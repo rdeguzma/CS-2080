@@ -14,11 +14,11 @@ variable_name="something"
 
 ############
 # Write the command to print this variable
-
+echo "$variable_name"
 ############
 # Now print the following using the variable
 # "Here is the value of the variable: something"
-
+echo "Here is the value of the variable: $variable_name"
 ###########
 
 # We learned that output of a command is a stream of data that can be treated as
@@ -28,7 +28,7 @@ variable_name="something"
 # Write the command to print the present working directory with the following
 # string
 # "I am currently in this directory: <name of the present working directory>"
-
+echo "I am currently in this directory: $(pwd)"
 ##########
 
 # Pointing to another variable using !
@@ -37,7 +37,7 @@ someone=name
 
 # Now ${!someone} would reference to variable $name. Print something using the
 # variable someone to instead of name, to print "alice"
-
+echo "My name is ${!someone}"
 
 # The use of special symbols to manipulate the variables is called shell
 # expansion
@@ -88,7 +88,19 @@ printit alice bob
 # Write a function called "cond_test" that takes two inputs
 # If the first input is similar to second input, it will print "hello"
 # else it will print "bye"
-#
+
+cond_test(){
+	if[[ $1 == $2 ]]; then
+		echo "hello"
+	else
+		echo "bye"
+	fi
+}
+
+cond_test attempt attempt
+cond_test attempt fail
+
+
 # To check if the strings are equal, use the following command
 #
 # [[ input1 == input2 ]] 
@@ -107,6 +119,16 @@ printit alice bob
 # the input equals to the sum of the two number, it prints "correct" else it
 # prints "incorrect"
 
+my_function(){
+	num1=5
+	num2=6
+	read -p "What is the sum of $num1 and $num2? " answer
+	if [[ $answer -eq $((num1 + num2)) ]]; then
+		echo "correct"
+	else
+		echo "incorrect"
+	fi
+}
 
 
 ############################
@@ -123,4 +145,19 @@ printit alice bob
 # Note $RANDOM gives a big random number. But taking a modulo of that number
 # with any number n would ensure that the random number is always within the
 # range of 1-n
+loop_function(){
+while :
+do
+	num1=$((RANDOM % 10 + 1))
+	num2=$((RANDOM % 10 + 1))
+	read -p "What is the sum of $num1 and $num2? " answer
+	if [[ $answer -eq $((num1 + num2)) ]]; then
+		echo "correct"
+	else
+		echo "incorrect"
+	fi
+done
+}
+
+
 
