@@ -128,4 +128,5 @@ sudo -u alice git push
     
     * Commit all these new addition with a git commit message
     * print the git log here\n\n"
+git log
 
