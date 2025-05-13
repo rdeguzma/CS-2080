@@ -117,10 +117,10 @@ sudo -u alice bash -c 'echo "linenum=$(($(cat *.html -n | tail -1 | awk '{print 
 sudo -u alice bash -c 'echo "sed -i \"\${linenum}a <p> This is the final exam submission of REYES on May 13th </p>\" /var/www/html/*.html" >> /home/alice/docker_test/app.sh'
 sudo -u alice bash -c 'echo "sudo systemctl restart nginx" >> /home/alice/docker_test/app.sh'
 
-sudo -u alice git add .
+sudo -u alice git add /home/alice/docker_test/Dockerfile
+sudo -u alice git add /home/alice/docker_test/app.sh
 sudo -u alice git commit -m "Alice dockerfile and app.sh"
-sudo -u alice git log --oneline
-
+sudo -u alice git push
 
     printf "
     \n
